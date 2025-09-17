@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Antrian Loket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+    }
+    button {
+      margin: 8px;
+      padding: 10px 16px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .tambah { background: #4CAF50; color: white; }
+    .layani { background: #f44336; color: white; }
+    .lihat { background: #2196F3; color: white; }
+    .output {
+      margin-top: 20px;
+      padding: 12px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: left;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sistem Antrian Loket</h1>
+  <div class="container">
+    <button class="tambah" onclick="tambahAntrian()">Tambah Antrian</button>
+    <button class="layani" onclick="layaniAntrian()">Layani Antrian</button>
+    <button class="lihat" onclick="lihatAntrian()">Lihat Antrian</button>
+    <div class="output" id="output">Belum ada antrian.</div>
+  </div>
+
+  <script>
+    let antrian = [];
+    let nomor = 0;
+
+    function tambahAntrian() {
+      nomor++;
+      antrian.push("P-" + nomor);
+      document.getElementById("output").innerHTML = "Nomor " + antrian[antrian.length-1] + " masuk antrian.";
+    }
+
+    function layaniAntrian() {
+      if (antrian.length === 0) {
+        document.getElementById("output").innerHTML = "Tidak ada antrian untuk dilayani.";
+      } else {
+        let dilayani = antrian.shift();
+        document.getElementById("output").innerHTML = "Nomor " + dilayani + " sedang dilayani.";
+      }
+    }
+
+    function lihatAntrian() {
+      if (antrian.length === 0) {
+        document.getElementById("output").innerHTML = "Antrian kosong.";
+      } else {
+        document.getElementById("output").innerHTML = "Antrian saat ini: <br>" + antrian.join(", ");
+      }
+    }
+  </script>
+</body>
+</html>
