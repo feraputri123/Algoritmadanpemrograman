@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistem Antrian Loket</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+    h1 { color: #003366; text-align: center; }
+    .container { display: flex; justify-content: space-around; margin-top: 30px; }
+    .box {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      padding: 20px;
+      width: 300px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover { background: #0055aa; }
+    ul { list-style: none; padding: 0; }
+    li {
+      background: #e8f0fe;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .highlight {
+      font-size: 20px;
+      font-weight: bold;
+      color: #d32f2f;
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>💻 Sistem Antrian Loket</h1>
+
+  <div class="container">
+    <!-- Ambil Antrian -->
+    <div class="box">
+      <h2>Ambil Nomor</h2>
+      <button onclick="tambahAntrian()">Ambil Nomor Antrian</button>
+      <p id="nomorBaru" class="highlight"></p>
+    </div>
+
+    <!-- Antrian Menunggu -->
+    <div class="box">
+      <h2>Antrian Menunggu</h2>
+      <ul id="daftarAntrian"></ul>
+      <button onclick="panggilAntrian()">Panggil Antrian</button>
+    </div>
+
+    <!-- Riwayat -->
+    <div class="box">
+      <h2>Riwayat Panggilan</h2>
+      <ul id="riwayatAntrian"></ul>
+    </div>
+  </div>
+
+  <script>
+    let antrian = [];
+    let riwayat = [];
+    let nomor = 0;
+
+    // Tambah antrian baru
+    function tambahAntrian() {
+      nomor++;
+      let nomorBaru = "A" + nomor;
+      antrian.push(nomorBaru);
+      document.getElementById("nomorBaru").innerText = "Nomor Anda: " + nomorBaru;
+      tampilkanAntrian();
+    }
+
+    // Panggil antrian
+    function panggilAntrian() {
+      if (antrian.length === 0) {
+        alert("Tidak ada antrian menunggu.");
+        return;
+      }
+      let dipanggil = antrian.shift();
+      riwayat.push(dipanggil);
+      alert("Memanggil nomor: " + dipanggil);
+      tampilkanAntrian();
+      tampilkanRiwayat();
+    }
+
+    // Tampilkan antrian
+    function tampilkanAntrian() {
+      let daftar = document.getElementById("daftarAntrian");
+      daftar.innerHTML = "";
+      antrian.forEach(no => {
+        let li = document.createElement("li");
+        li.textContent = no;
+        daftar.appendChild(li);
+      });
+    }
+
+    // Tampilkan riwayat
+    function tampilkanRiwayat() {
+      let daftar = document.getElementById("riwayatAntrian");
+      daftar.innerHTML = "";
+      riwayat.forEach(no => {
+        let li = document.createElement("li");
+        li.textContent = no;
+        daftar.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
