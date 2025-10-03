@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistem Antrian Loket</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: darkblue; }
+    .container { display: flex; gap: 50px; }
+    .box { border: 1px solid #333; padding: 15px; border-radius: 8px; width: 300px; }
+    button { margin: 5px 0; padding: 10px; border: none; background: darkblue; color: white; border-radius: 5px; cursor: pointer; }
+    button:hover { background: navy; }
+    ul { list-style-type: none; padding: 0; }
+    li { background: #f4f4f4; margin: 5px 0; padding: 8px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>💻 Sistem Antrian Loket</h1>
+
+  <div class="container">
+    <!-- Antrian Baru -->
+    <div class="box">
+      <h2>Tambah Antrian</h2>
+      <button onclick="tambahAntrian()">Ambil Nomor Antrian</button>
+      <p id="nomorBaru"></p>
+    </div>
+
+    <!-- Daftar Antrian -->
+    <div class="box">
+      <h2>Antrian Menunggu</h2>
+      <ul id="daftarAntrian"></ul>
+      <button onclick="panggilAntrian()">Panggil Antrian</button>
+    </div>
+
+    <!-- Riwayat Antrian -->
+    <div class="box">
+      <h2>Riwayat Antrian</h2>
+      <ul id="riwayatAntrian"></ul>
+    </div>
+  </div>
+
+  <script src="jss= [];.ts"></script>
+</body>
+</html>
