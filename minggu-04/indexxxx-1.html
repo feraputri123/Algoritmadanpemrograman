@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pencarian Judul Buku (Linear Search)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 30px;
+      text-align: center;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #hasil {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pencarian Judul Buku</h2>
+    <p>Masukkan judul buku yang ingin dicari:</p>
+    <input type="text" id="judulInput" placeholder="Contoh: Biologi Umum">
+    <button onclick="cariBuku()">Cari</button>
+
+    <div id="hasil"></div>
+  </div>
+
+  <script>
+    // Array judul buku (tidak terurut)
+    const buku = [
+      "Matematika Dasar",
+      "Pemrograman Python",
+      "Sejarah Dunia",
+      "Algoritma Pemrograman",
+      "Biologi Umum"
+    ];
+
+    function cariBuku() {
+      let judulCari = document.getElementById("judulInput").value;
+      let found = false;
+      let index = -1;
+
+      // Linear search
+      for (let i = 0; i < buku.length; i++) {
+        if (buku[i].toLowerCase() === judulCari.toLowerCase()) {
+          found = true;
+          index = i;
+          break;
+        }
+      }
+
+      // Tampilkan hasil
+      let hasilDiv = document.getElementById("hasil");
+      if (found) {
+        hasilDiv.innerHTML = `✅ Buku "<b>${judulCari}</b>" ditemukan di indeks ke-${index}`;
+        hasilDiv.style.color = "green";
+      } else {
+        hasilDiv.innerHTML = `❌ Buku "<b>${judulCari}</b>" tidak ditemukan dalam daftar.`;
+        hasilDiv.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
