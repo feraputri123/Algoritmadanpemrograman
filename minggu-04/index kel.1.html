@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peringkat Kelas Sederhana</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    }
+    h2 { text-align: center; }
+    input {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 8px 15px;
+      margin: 5px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #2980b9; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #3498db;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Peringkat Kelas Sederhana</h2>
+    <input type="text" id="nama" placeholder="Nama Siswa">
+    <input type="number" id="nilai" placeholder="Nilai">
+    <button onclick="tambahSiswa()">Tambah</button>
+    <button onclick="hitungPeringkat()">Hitung Peringkat</button>
+    
+    <table id="tabelSiswa">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Nilai</th>
+          <th>Peringkat</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    let siswa = [];
+
+    function tambahSiswa() {
+      let nama = document.getElementById("nama").value;
+      let nilai = parseInt(document.getElementById("nilai").value);
+
+      if (nama && !isNaN(nilai)) {
+        siswa.push({ nama: nama, nilai: nilai });
+        document.getElementById("nama").value = "";
+        document.getElementById("nilai").value = "";
+        tampilkanTabel();
+      } else {
+        alert("Masukkan nama dan nilai dengan benar!");
+      }
+    }
+
+    function tampilkanTabel() {
+      let tbody = document.querySelector("#tabelSiswa tbody");
+      tbody.innerHTML = "";
+      siswa.forEach(s => {
+        let row = `<tr><td>${s.nama}</td><td>${s.nilai}</td><td>-</td></tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+
+    function hitungPeringkat() {
+      // Urutkan berdasarkan nilai (descending)
+      siswa.sort((a,b) => b.nilai - a.nilai);
+
+      let tbody = document.querySelector("#tabelSiswa tbody");
+      tbody.innerHTML = "";
+      siswa.forEach((s, index) => {
+        let row = `<tr><td>${s.nama}</td><td>${s.nilai}</td><td>${index+1}</td></tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+  </script>
+</body>
+</html>
