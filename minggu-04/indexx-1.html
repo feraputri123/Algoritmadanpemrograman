@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Peringkat Kelas - Linear Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin: auto;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #hasil {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Peringkat Kelas</h2>
+    <p>Masukkan nilai siswa (pisahkan dengan koma):</p>
+    <input type="text" id="nilaiInput" placeholder="Contoh: 78,90,85,60,95,88">
+    <br>
+    <button onclick="cariPeringkat()">Cari 3 Nilai Tertinggi</button>
+    <div id="hasil"></div>
+  </div>
+
+  <script>
+    function cariPeringkat() {
+      let input = document.getElementById("nilaiInput").value;
+      let nilai = input.split(",").map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+
+      if (nilai.length < 3) {
+        document.getElementById("hasil").innerHTML = "Minimal masukkan 3 nilai!";
+        return;
+      }
+
+      let max1 = -Infinity, max2 = -Infinity, max3 = -Infinity;
+
+      // Linear search untuk cari 3 terbesar
+      for (let i = 0; i < nilai.length; i++) {
+        let x = nilai[i];
+        if (x > max1) {
+          max3 = max2;
+          max2 = max1;
+          max1 = x;
+        } else if (x > max2) {
+          max3 = max2;
+          max2 = x;
+        } else if (x > max3) {
+          max3 = x;
+        }
+      }
+
+      document.getElementById("hasil").innerHTML = `
+        🥇 Peringkat 1: ${max1}<br>
+        🥈 Peringkat 2: ${max2}<br>
+        🥉 Peringkat 3: ${max3}
+      `;
+    }
+  </script>
+</body>
+</html>
