@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membalikkan Urutan String</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      color: #2f3640;
+    }
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #00a8ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0097e6;
+    }
+    p {
+      font-size: 18px;
+      color: #353b48;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Membalikkan Urutan String</h1>
+    <input type="text" id="inputString" placeholder="Masukkan teks di sini...">
+    <br>
+    <button onclick="balikkanString()">Balikkan</button>
+    <p id="hasil"></p>
+  </div>
+
+  <script>
+    function balikkanString() {
+      const teks = document.getElementById("inputString").value;
+      if (teks === "") {
+        document.getElementById("hasil").innerText = "Silakan masukkan teks terlebih dahulu.";
+        return;
+      }
+      const hasilBalik = teks.split("").reverse().join("");
+      document.getElementById("hasil").innerText = "Hasil: " + hasilBalik;
+    }
+  </script>
+
+</body>
+</html>
